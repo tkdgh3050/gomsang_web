@@ -24,7 +24,7 @@ export default function Card({ iconType, title, children }: TCardProps) {
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex gap-3 align-baseline">
+      <div className="flex items-center gap-3">
         <div>
           {IconComponent && (
             <IconComponent width={28} height={28} alt={title} />
@@ -33,7 +33,7 @@ export default function Card({ iconType, title, children }: TCardProps) {
         <div className="text-3xl font-bold">{title}</div>
       </div>
       <div className="w-full h-[2px] bg-gray-800 my-2"></div>
-      <div>{children}</div>
+      <div className="p-2">{children}</div>
     </div>
   );
 }
