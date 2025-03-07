@@ -2,6 +2,7 @@ import Icon, { IconType } from "@/components/Icon";
 import Image from "next/image";
 import { EmailIcon, CodeIcon, PhoneIcon, PortfolioIcon } from "@/assets";
 import Card, { CardIconKey } from "./Card";
+import Profile from "./Profile";
 
 export default function Resume() {
   return (
@@ -33,30 +34,7 @@ export default function Resume() {
         </div>
       </section>
       <section className="flex flex-col gap-10">
-        <Card iconType={CardIconKey.PROFILE} title="Profile">
-          <div className="pb-2 text-2xl font-bold">
-            경력 <span className="text-xl font-semibold">(총 3년 3개월)</span>
-          </div>
-          <div className="flex flex-col gap-4 ml-1">
-            {CAREER_LIST.map((val) => (
-              <div key={val.companyName} className="flex flex-col gap-1">
-                <div className="flex items-baseline gap-4">
-                  <div className="text-base font-semibold underline underline-offset-4">
-                    {val.companyName}
-                  </div>
-                  <div className="text-gray-400">{val.workPeriod}</div>
-                </div>
-                <div className="flex flex-col gap-1">
-                  {val.workList.map((work) => (
-                    <div key={work} className="ml-2">
-                      • {work}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </Card>
+        <Profile />
         <Card iconType={CardIconKey.PROJECT} title="Projects & Skills">
           <div>aa</div>
         </Card>
@@ -95,34 +73,5 @@ const LINK_LIST: {
     icon: CodeIcon,
     text: "Github Link",
     link: "https://github.com/tkdgh3050",
-  },
-];
-
-const CAREER_LIST: {
-  companyName: string;
-  workPeriod: string;
-  workList: string[];
-}[] = [
-  {
-    companyName: "(주)이노룰스",
-    workPeriod: "2025.01 ~ ",
-    workList: ["PV 솔루션 신규 구측 FE 개발"],
-  },
-  {
-    companyName: "주식회사 티맥스핀테크",
-    workPeriod: "2023.06 ~ 2024.10",
-    workList: [
-      "배달서비스공제조합 구축 프로젝트 백오피스 FE 개발",
-      "AI디지털교과서 활동카드 FE 개발 파견",
-    ],
-  },
-  {
-    companyName: "(주)신세계아이앤씨",
-    workPeriod: "2019.09 ~ 2021.08",
-    workList: [
-      "신세계티비쇼핑팀 물류/WMS 시스템 담당자",
-      "자사 WMS 시스템 구축 프로젝트 참여",
-      "물류/WMS 백오피스 시스템 운영 및 유지보수",
-    ],
   },
 ];
