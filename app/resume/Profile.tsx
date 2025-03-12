@@ -78,7 +78,7 @@ const CAREER_LIST: {
   {
     companyName: "(주)이노룰스",
     workPeriod: "2025.01 ~ ",
-    workList: ["PV 솔루션 신규 구측 FE 개발"],
+    workList: ["PV 솔루션 신규 구축 FE 개발"],
   },
   {
     companyName: "주식회사 티맥스핀테크",
