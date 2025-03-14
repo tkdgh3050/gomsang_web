@@ -4,10 +4,10 @@ import Card, { CardIconKey } from "./Card";
 export default function Project() {
   return (
     <Card iconType={CardIconKey.PROJECT} title="Projects & Skills">
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-2">
+      <div className="flex">
+        <div className="flex flex-col gap-2 pr-56">
           <div className="text-2xl font-bold">회사 프로젝트</div>
-          <div className="flex gap-4 mx-1">
+          <div className="flex flex-col gap-4 mx-1">
             {COMPANY_PROJECT.map((prj) => (
               <div>
                 <div className="pb-1 text-base font-semibold underline underline-offset-4">
@@ -25,7 +25,7 @@ export default function Project() {
         </div>
         <div className="flex flex-col gap-2">
           <div className="text-2xl font-bold">개인 프로젝트</div>
-          <div className="flex mx-1 gap-14">
+          <div className="flex flex-col gap-4 mx-1">
             {PERSONAL_PROJECT.map((prj) => (
               <div>
                 <div className="pb-1 text-base font-semibold underline underline-offset-4">
@@ -120,10 +120,10 @@ const PERSONAL_PROJECT: {
         partName: "Backend",
         skills: ["Express", "TypeScript", "MySQL"],
       },
-      {
-        partName: "Deploy",
-        skills: ["Netlify"],
-      },
+      // {
+      //   partName: "Deploy",
+      //   skills: ["Netlify"],
+      // },
     ],
   },
   {
@@ -138,10 +138,10 @@ const PERSONAL_PROJECT: {
         partName: "Backend",
         skills: ["Express", "TypeScript", "MySQL"],
       },
-      {
-        partName: "Deploy",
-        skills: ["Amazon EC2", "NGINX"],
-      },
+      // {
+      //   partName: "Deploy",
+      //   skills: ["Amazon EC2", "NGINX"],
+      // },
     ],
   },
   {
@@ -156,10 +156,10 @@ const PERSONAL_PROJECT: {
         partName: "Backend",
         skills: ["Firebase"],
       },
-      {
-        partName: "Deploy",
-        skills: ["Netlify"],
-      },
+      // {
+      //   partName: "Deploy",
+      //   skills: ["Netlify"],
+      // },
     ],
   },
 ];
