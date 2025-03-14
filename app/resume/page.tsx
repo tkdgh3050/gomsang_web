@@ -4,6 +4,7 @@ import { EmailIcon, CodeIcon, PhoneIcon, PortfolioIcon } from "@/assets";
 import Card, { CardIconKey } from "./Card";
 import Profile from "./Profile";
 import Project from "./Project";
+import AboutMe from "./AboutMe";
 
 export default function Resume() {
   return (
@@ -37,9 +38,7 @@ export default function Resume() {
       <section className="flex flex-col gap-10">
         <Profile />
         <Project />
-        <Card iconType={CardIconKey.ME} title="About Me">
-          <div>aa</div>
-        </Card>
+        <AboutMe />
       </section>
     </main>
   );
