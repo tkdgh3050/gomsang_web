@@ -1,4 +1,3 @@
-import React from "react";
 import Card, { CardIconKey } from "./Card";
 
 export default function Project() {

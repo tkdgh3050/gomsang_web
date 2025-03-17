@@ -1,7 +1,4 @@
-import Icon, { IconType } from "@/components/Icon";
-import Image from "next/image";
 import { EmailIcon, CodeIcon, PhoneIcon, PortfolioIcon } from "@/assets";
-import Card, { CardIconKey } from "./Card";
 import Profile from "./Profile";
 import Project from "./Project";
 import AboutMe from "./AboutMe";
