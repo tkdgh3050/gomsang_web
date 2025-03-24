@@ -2,17 +2,15 @@
 import clsx from "clsx";
 import Holidays from "date-holidays";
 import dayjs from "dayjs";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-type TMonthInfo = {
-  startOfMonth: dayjs.Dayjs;
-  endOfMonth: dayjs.Dayjs;
-  daysInMonth: number;
-  startDay: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+type TCalendarProps = {
+  onChangeDate?: (dateStr: string) => void;
 };
 
-export default function Calendar() {
+export default function Calendar({ onChangeDate }: TCalendarProps) {
   const [today, setToday] = useState<dayjs.Dayjs>(dayjs());
+  const [selectedDay, setSelectedDay] = useState(dayjs().format("YYYY-MM-DD"));
   const holidayRef = useRef(new Holidays("KR"));
   const startOfMonth = today.startOf("month");
   const endOfMonth = today.endOf("month");
@@ -28,6 +26,12 @@ export default function Calendar() {
     const now = today.set("date", date);
     return holidayRef.current.isHoliday(now.format("YYYY-MM-DD"));
   };
+
+  useEffect(() => {
+    if (selectedDay) {
+      onChangeDate && onChangeDate(selectedDay);
+    }
+  }, [selectedDay]);
 
   return (
     <div className="max-w-md p-4 mx-auto bg-white rounded-lg shadow-md">
@@ -73,10 +77,17 @@ export default function Calendar() {
                 "text-center",
                 "border",
                 "rounded-lg",
+                "cursor-pointer",
                 (idx + startDay) % 7 === 0 && "text-red-700",
                 (idx + startDay) % 7 === 6 && "text-blue-700",
-                getDateIsHoliday(day) && "text-red-700"
+                getDateIsHoliday(day) && "text-red-700",
+                selectedDay === `${today.format("YYYY-MM")}-${day}`
+                  ? "bg-cyan-200"
+                  : "hover:bg-cyan-50"
               )}
+              onClick={() =>
+                setSelectedDay(`${today.format("YYYY-MM")}-${day}`)
+              }
             >
               {day}
             </div>
