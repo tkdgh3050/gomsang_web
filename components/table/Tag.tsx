@@ -1,32 +1,25 @@
+"use client";
 import clsx from "clsx";
 
 type TTagProps = {
   tagColor: string;
   tagBgColor: string;
   tagText: string;
-  width?: string;
-  height?: string;
 };
-export default function Tag({
-  tagColor,
-  tagBgColor,
-  tagText,
-  width = "30px",
-  height = "15px",
-}: TTagProps) {
+export default function Tag({ tagColor, tagBgColor, tagText }: TTagProps) {
   return (
-    <span
+    <div
       className={clsx(
         "flex",
         "justify-center",
         "items-center",
-        `w-[${width}]`,
-        `h-[${height}]`,
-        `bg-${tagBgColor}`,
-        `text-${tagColor}`
+        "rounded-lg",
+        "p-1",
+        tagBgColor,
+        tagColor
       )}
     >
       {tagText}
-    </span>
+    </div>
   );
 }

@@ -2,13 +2,13 @@
 import Tag from "./Tag";
 
 export default function Table() {
-  console.log("here");
   return (
     <table className="w-full">
       <tr>
         {colInfo.map((val) => (
           <th
             key={val.colId}
+            style={{ width: val.width }}
             className={`border-2 border-black w-[${val.width}] border-collapse`}
           >
             {val.colName}
@@ -34,8 +34,8 @@ export default function Table() {
                   className={`border-2 border-black border-collapse`}
                 >
                   <Tag
-                    tagColor="red-50"
-                    tagBgColor="white-90"
+                    tagColor="text-gray-200"
+                    tagBgColor="bg-gray-400"
                     tagText={row[colData.colId].toString()}
                   />
                 </td>
@@ -68,7 +68,7 @@ const colInfo: {
     colId: "tag",
     colName: "tag",
     colType: "TAG",
-    width: "100px",
+    width: "200px",
   },
   {
     colId: "todo",
@@ -80,13 +80,13 @@ const colInfo: {
     colId: "hour",
     colName: "hour",
     colType: "NUMBER",
-    width: "100",
+    width: "100px",
   },
   {
     colId: "isComplete",
     colName: "isComplete",
     colType: "CHECKBOX",
-    width: "100",
+    width: "100px",
   },
 ];
 

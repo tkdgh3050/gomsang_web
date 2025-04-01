@@ -7,7 +7,7 @@ export default function Page() {
     console.log(dateStr);
   };
   return (
-    <div className="h-[400px] w-[400px] flex">
+    <div className="h-[400px] w-[400px] flex-col">
       <Calendar onChangeDate={onChangeDate} />
       <Table />
     </div>
