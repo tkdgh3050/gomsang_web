@@ -3,54 +3,43 @@ import Tag from "./Tag";
 
 export default function Table() {
   return (
-    <table className="w-full">
+    <table className="table w-full ">
       <tr>
         {colInfo.map((val) => (
           <th
             key={val.colId}
             style={{ width: val.width }}
-            className={`border-2 border-black w-[${val.width}] border-collapse`}
+            className={`border-[1px] border-gray-200 w-[${val.width}] bg-cyan-50`}
           >
             {val.colName}
           </th>
         ))}
       </tr>
       {rowData.map((row) => (
-        <tr key={row.todo.toString()}>
-          {colInfo.map((colData) => {
-            if (colData.colType === "NUMBER" || colData.colType === "TEXT") {
-              return (
-                <td
-                  key={colData.colId}
-                  className={`border-2 border-black border-collapse`}
-                >
-                  {row[colData.colId]}
-                </td>
-              );
-            } else if (colData.colType === "TAG") {
-              return (
-                <td
-                  key={colData.colId}
-                  className={`border-2 border-black border-collapse`}
-                >
-                  <Tag
-                    tagColor="text-gray-200"
-                    tagBgColor="bg-gray-400"
-                    tagText={row[colData.colId].toString()}
-                  />
-                </td>
-              );
-            } else if (colData.colType === "CHECKBOX") {
-              return (
-                <td
-                  key={colData.colId}
-                  className={`border-2 border-black border-collapse`}
-                >
-                  <div className="checkbox">{row[colData.colId]}</div>
-                </td>
-              );
-            }
-          })}
+        <tr className="table-row" key={row.todo.toString()}>
+          {colInfo.map((colData) => (
+            <td
+              key={colData.colId}
+              className={`table-cell border-[1px] border-gray-200  align-middle text-center p-2`}
+            >
+              {(colData.colType === "NUMBER" || colData.colType === "TEXT") &&
+                row[colData.colId]}
+              {colData.colType === "TAG" && (
+                <Tag
+                  tagColor="text-gray-200"
+                  tagBgColor="bg-gray-400"
+                  tagText={row[colData.colId].toString()}
+                />
+              )}
+              {colData.colType === "CHECKBOX" && (
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  checked={row[colData.colId] as boolean}
+                />
+              )}
+            </td>
+          ))}
         </tr>
       ))}
     </table>
@@ -66,27 +55,27 @@ const colInfo: {
 }[] = [
   {
     colId: "tag",
-    colName: "tag",
+    colName: "태그",
     colType: "TAG",
     width: "200px",
   },
   {
     colId: "todo",
-    colName: "todo",
+    colName: "할 일",
     colType: "TEXT",
     width: "300px",
   },
   {
     colId: "hour",
-    colName: "hour",
+    colName: "시간",
     colType: "NUMBER",
     width: "100px",
   },
   {
     colId: "isComplete",
-    colName: "isComplete",
+    colName: "완료여부",
     colType: "CHECKBOX",
-    width: "100px",
+    width: "200px",
   },
 ];
 
