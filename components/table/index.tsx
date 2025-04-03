@@ -1,47 +1,67 @@
 "use client";
+import { DragEventHandler } from "react";
 import Tag from "./Tag";
 
 export default function Table() {
+  const onDragRow: DragEventHandler<HTMLSpanElement> = (e) => {
+    console.log(e);
+  };
   return (
     <table className="table w-full ">
-      <tr>
-        {colInfo.map((val) => (
-          <th
-            key={val.colId}
-            style={{ width: val.width }}
-            className={`border-[1px] border-gray-200 w-[${val.width}] bg-cyan-50`}
-          >
-            {val.colName}
-          </th>
-        ))}
-      </tr>
-      {rowData.map((row) => (
-        <tr className="table-row" key={row.todo.toString()}>
-          {colInfo.map((colData) => (
-            <td
-              key={colData.colId}
-              className={`table-cell border-[1px] border-gray-200  align-middle text-center p-2`}
+      <thead>
+        <tr>
+          {tableInfo.hasDrag && (
+            <th className="border-[1px] border-gray-200 w-40 bg-cyan-50">
+              순서
+            </th>
+          )}
+          {colInfo.map((val) => (
+            <th
+              key={val.colId}
+              style={{ width: val.width }}
+              className={`border-[1px] border-gray-200 bg-cyan-50`}
             >
-              {(colData.colType === "NUMBER" || colData.colType === "TEXT") &&
-                row[colData.colId]}
-              {colData.colType === "TAG" && (
-                <Tag
-                  tagColor="text-gray-200"
-                  tagBgColor="bg-gray-400"
-                  tagText={row[colData.colId].toString()}
-                />
-              )}
-              {colData.colType === "CHECKBOX" && (
-                <input
-                  type="checkbox"
-                  className="checkbox"
-                  checked={row[colData.colId] as boolean}
-                />
-              )}
-            </td>
+              {val.colName}
+            </th>
           ))}
         </tr>
-      ))}
+      </thead>
+      <tbody>
+        {rowData.map((row) => (
+          <tr className="table-row" key={row.todo.toString()}>
+            {tableInfo.hasDrag && (
+              <td>
+                <span draggable onDragStart={onDragRow}>
+                  드래그
+                </span>
+              </td>
+            )}
+            {colInfo.map((colData) => (
+              <td
+                key={colData.colId}
+                className={`table-cell border-[1px] border-gray-200  align-middle text-center p-2`}
+              >
+                {(colData.colType === "NUMBER" || colData.colType === "TEXT") &&
+                  row[colData.colId]}
+                {colData.colType === "TAG" && (
+                  <Tag
+                    tagColor="text-gray-200"
+                    tagBgColor="bg-gray-400"
+                    tagText={row[colData.colId].toString()}
+                  />
+                )}
+                {colData.colType === "CHECKBOX" && (
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    checked={row[colData.colId] as boolean}
+                  />
+                )}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
